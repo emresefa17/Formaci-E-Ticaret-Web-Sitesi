@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Jersey Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Additional styles for product page */
+        .product-container {
+            display: flex;
+            gap: 40px;
+            padding: 80px 0;
+        }
+        
+        .product-image-large {
+            flex: 1;
+            max-width: 500px;
+        }
+        
+        .product-image-large img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-title {
+            font-size: 2rem;
+            color: #1d3557;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            color: #e63946;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-selector label {
+            margin-right: 15px;
+            font-weight: 500;
+        }
+        
+        .quantity-selector input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .add-to-cart-large {
+            padding: 12px 25px;
+            background-color: #1d3557;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+        }
+        
+        .add-to-cart-large:hover {
+            background-color: #152238;
+        }
+        
+        .add-to-wishlist {
+            padding: 12px 25px;
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-wishlist:hover {
+            background-color: #e9ecef;
+        }
+        
+        .add-to-wishlist i {
+            margin-right: 8px;
+            color: #e63946;
+        }
+        
+        .product-meta {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .product-meta p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .product-meta span {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .related-products {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+            }
+            
+            .product-image-large {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Jersey Shop</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+                <a href="account.html"><i class="fas fa-user"></i></a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="product-detail-container">
+        <!-- Product details will be loaded dynamically with JavaScript -->
+    </div>
+
+    <section class="related-products">
+        <div class="container">
+            <h2 class="section-title">Related Products</h2>
+            <div class="product-grid" id="related-products">
+                <!-- Related products will be loaded dynamically with JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Jersey Shop</h3>
+                    <p>Your one-stop shop for premium sports jerseys.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="shop.html?category=football">Football</a></li>
+                        <li><a href="shop.html?category=basketball">Basketball</a></li>
+                        <li><a href="shop.html?category=custom">Custom</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Jersey St, Sports City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@jerseyshop.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Jersey Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get product ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+            
+            if (!productId) {
+                window.location.href = 'shop.html';
+                return;
+            }
+            
+            // Find the product
+            const product = products.find(p => p.id === productId);
+            
+            if (!product) {
+                window.location.href = 'shop.html';
+                return;
+            }
+            
+            // Update page title
+            document.title = `${product.name} - Jersey Shop`;
+            
+            // Display product details
+            const productDetailContainer = document.getElementById('product-detail-container');
+            
+            productDetailContainer.innerHTML = `
+                <div class="product-container">
+                    <div class="product-image-large">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h1 class="product-title">${product.name}</h1>
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        <div class="product-description">
+                            <p>${product.description}</p>
+                        </div>
+                        <div class="quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" value="1" min="1" max="10">
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart-large" id="add-to-cart-btn">Add to Cart</button>
+                            <button class="add-to-wishlist"><i class="fas fa-heart"></i> Add to Wishlist</button>
+                        </div>
+                        <div class="product-meta">
+                            <p><span>Category:</span> ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                            <p><span>SKU:</span> JSY-${product.id.toString().padStart(4, '0')}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add event listener to Add to Cart button
+            document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+                const quantity = parseInt(document.getElementById('quantity').value);
+                addToCartWithQuantity(productId, quantity);
+            });
+            
+            // Display related products (same category)
+            const relatedProductsContainer = document.getElementById('related-products');
+            const relatedProducts = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+            
+            relatedProducts.forEach(relatedProduct => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
+                        <div class="product-overlay">
+                            <a href="product.html?id=${relatedProduct.id}" title="View Details"><i class="fas fa-eye"></i></a>
+                            <a href="#" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3>${relatedProduct.name}</h3>
+                        <p class="price">$${relatedProduct.price.toFixed(2)}</p>
+                        <button class="add-to-cart" data-id="${relatedProduct.id}">Add to Cart</button>
+                    </div>
+                `;
+                
+                relatedProductsContainer.appendChild(productCard);
+            });
+            
+            // Add event listeners to Add to Cart buttons in related products
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+            
+            // Update cart count
+            updateCartCount();
+        });
+        
+        // Function to add product to cart with quantity
+        function addToCartWithQuantity(productId, quantity) {
+            // Get current cart from localStorage or initialize empty array
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Find the product
+            const product = products.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                });
+            }
+            
+            // Save cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show confirmation message
+            alert(`${quantity} ${quantity > 1 ? 'items' : 'item'} of ${product.name} ${quantity > 1 ? 'have' : 'has'} been added to your cart!`);
+        }
+    </script>
+</body>
+</html>

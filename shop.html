@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Jersey Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Additional styles for shop page */
+        .shop-container {
+            display: flex;
+            gap: 30px;
+            padding: 80px 0;
+        }
+        
+        .filters {
+            width: 250px;
+            flex-shrink: 0;
+        }
+        
+        .filter-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-section h3 {
+            color: #1d3557;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .filter-options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .filter-options input {
+            margin-right: 8px;
+        }
+        
+        .price-range {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .price-range input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .products-grid {
+            flex: 1;
+        }
+        
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .sort-options select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        
+        .no-products {
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .shop-container {
+                flex-direction: column;
+            }
+            
+            .filters {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Jersey Shop</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+                <a href="account.html"><i class="fas fa-user"></i></a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="section-title">Shop All Jerseys</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="shop-container">
+            <aside class="filters">
+                <div class="filter-section">
+                    <h3>Categories</h3>
+                    <div class="filter-options" id="category-filters">
+                        <label>
+                            <input type="radio" name="category" value="all" checked> All Categories
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="football"> Football
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="basketball"> Basketball
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="custom"> Custom
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <div class="filter-options">
+                        <div class="price-range">
+                            <input type="number" id="min-price" placeholder="Min" min="0">
+                            <span>to</span>
+                            <input type="number" id="max-price" placeholder="Max" min="0">
+                        </div>
+                        <button class="btn-small" id="apply-price-filter" style="margin-top: 15px;">Apply</button>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="products-grid">
+                <div class="products-header">
+                    <p id="products-count">Showing all products</p>
+                    <div class="sort-options">
+                        <select id="sort-by">
+                            <option value="default">Default Sorting</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name-asc">Name: A to Z</option>
+                            <option value="name-desc">Name: Z to A</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-grid" id="products-container">
+                    <!-- Products will be loaded dynamically with JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Jersey Shop</h3>
+                    <p>Your one-stop shop for premium sports jerseys.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="shop.html?category=football">Football</a></li>
+                        <li><a href="shop.html?category=basketball">Basketball</a></li>
+                        <li><a href="shop.html?category=custom">Custom</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Jersey St, Sports City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@jerseyshop.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Jersey Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productsContainer = document.getElementById('products-container');
+            const productsCountElement = document.getElementById('products-count');
+            const categoryFilters = document.querySelectorAll('input[name="category"]');
+            const sortBySelect = document.getElementById('sort-by');
+            const minPriceInput = document.getElementById('min-price');
+            const maxPriceInput = document.getElementById('max-price');
+            const applyPriceFilterBtn = document.getElementById('apply-price-filter');
+            
+            let filteredProducts = [...products];
+            
+            // Check URL for category parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryParam = urlParams.get('category');
+            
+            if (categoryParam) {
+                document.querySelector(`input[value="${categoryParam}"]`).checked = true;
+                filteredProducts = products.filter(product => product.category === categoryParam);
+            }
+            
+            // Display products function
+            function displayProducts() {
+                if (filteredProducts.length === 0) {
+                    productsContainer.innerHTML = '<div class="no-products"><p>No products found matching your criteria.</p></div>';
+                    productsCountElement.textContent = 'No products found';
+                    return;
+                }
+                
+                productsContainer.innerHTML = '';
+                productsCountElement.textContent = `Showing ${filteredProducts.length} products`;
+                
+                filteredProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    
+                    productCard.innerHTML = `
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            <div class="product-overlay">
+                                <a href="product.html?id=${product.id}" title="View Details"><i class="fas fa-eye"></i></a>
+                                <a href="#" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-details">
+                            <h3>${product.name}</h3>
+                            <p class="price">$${product.price.toFixed(2)}</p>
+                            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                        </div>
+                    `;
+                    
+                    productsContainer.appendChild(productCard);
+                });
+                
+                // Add event listeners to Add to Cart buttons
+                document.querySelectorAll('.add-to-cart').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const productId = parseInt(this.getAttribute('data-id'));
+                        addToCart(productId);
+                    });
+                });
+            }
+            
+            // Filter by category
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('change', function() {
+                    const category = this.value;
+                    
+                    if (category === 'all') {
+                        filteredProducts = [...products];
+                    } else {
+                        filteredProducts = products.filter(product => product.category === category);
+                    }
+                    
+                    applySorting();
+                    displayProducts();
+                });
+            });
+            
+            // Sort products
+            function applySorting() {
+                const sortValue = sortBySelect.value;
+                
+                switch(sortValue) {
+                    case 'price-low':
+                        filteredProducts.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-high':
+                        filteredProducts.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'name-asc':
+                        filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                        break;
+                    case 'name-desc':
+                        filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+                        break;
+                    default:
+                        // Default sorting (by id)
+                        filteredProducts.sort((a, b) => a.id - b.id);
+                }
+            }
+            
+            sortBySelect.addEventListener('change', function() {
+                applySorting();
+                displayProducts();
+            });
+            
+            // Filter by price
+            applyPriceFilterBtn.addEventListener('click', function() {
+                const minPrice = minPriceInput.value ? parseFloat(minPriceInput.value) : 0;
+                const maxPrice = maxPriceInput.value ? parseFloat(maxPriceInput.value) : Infinity;
+                
+                // Get current category filter
+                const selectedCategory = document.querySelector('input[name="category"]:checked').value;
+                
+                if (selectedCategory === 'all') {
+                    filteredProducts = products.filter(product => 
+                        product.price >= minPrice && product.price <= maxPrice
+                    );
+                } else {
+                    filteredProducts = products.filter(product => 
+                        product.category === selectedCategory && 
+                        product.price >= minPrice && 
+                        product.price <= maxPrice
+                    );
+                }
+                
+                applySorting();
+                displayProducts();
+            });
+            
+            // Initial display
+            applySorting();
+            displayProducts();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
